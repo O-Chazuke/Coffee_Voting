@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+{% block content %}
+
+<h1>{{ coffee.name }}</h1>
+<div>
+    <p>豆の銘柄：{{ coffee.brand }}</p>
+    <p>焙煎度：{{ coffee.roasting }}</p>
+    <p>豆の重量：{{ coffee.beans_grams }} g</p>
+    <p>抽出時間：{{ coffee.time }} s</p>
+    <p>湯の温度：{{ coffee.temperature }} ℃</p>
+    <p>最終的な量：{{ coffee.final_grams }} ml</p>
+    <p>{{ coffee.comment }}</p>
+</div>
+<div>
+    <a href='{% url "coffee_voting:index" %}'>一覧</a> |
+    <a href='{% url "coffee_voting:update" coffee.pk %}'>編集</a> |
+</div>
+
+{% endblock %}

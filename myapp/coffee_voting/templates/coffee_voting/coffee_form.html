@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+{% block content %}
+
+<h1>珈琲情報の{{ object|yesno:'更新,作成'}}</h1>
+
+<form action='' method='post'>{% csrf_token %}
+    {{ form.as_p }} <!--全ての項目を表示-->
+    <button type='submit' class='submit'>{{ object|yesno:'更新,作成'}}</button>
+</form>
+<div>
+    <!--JavaScriptの呼び出しで、前のページに戻る機能を実現-->
+    <a href='JavaScript:history.back()'>&lt; 戻る</a>
+</div>
+
+{% endblock %}
