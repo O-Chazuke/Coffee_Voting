@@ -1,19 +1,21 @@
 {% extends './base.html' %}
 {% block content %}
-    <h1>珈琲一覧</h1>
+    <h1>珈琲一覧(新しい順)</h1>
     <table class='table table-striped table-hover'>
         <tr>
-            <th>作成日時</th><th>豆の銘柄</th><th>抽出情報詳細</th>
+            <th>抽出日時(年/月/日 時)</th><th>豆の名前</th><th>抽出情報詳細</th><th>レビュー画面へ</th>
         </tr>
-        {% for coffee in object_list %}
+        {% for coffee in object_list reversed %}
         <tr>
-            <td>{{ coffee.created_at }}</td>
+            <td>{{ coffee.created_at|date:"Y/m/d H:i" }}</td>
             <td>{{ coffee.brand }}</td>
             <td><a href='{% url "coffee_voting:detail" coffee.pk %}'>詳細</a></td>
+            <td><a href='{% url "coffee_voting:voting" coffee.pk %}'>レビュー</a></td>
         </tr>
         {% endfor %}
     </table>
-    <div>
+    
+    <div class=foot-link>
         <a href='{% url "coffee_voting:create" %}'>新規珈琲登録</a>
     </div>
 {% endblock %}

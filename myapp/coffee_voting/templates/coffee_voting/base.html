@@ -1,19 +1,82 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset='utf-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' >
-        <style>body {padding-top: 80px;}</style>
-        <title>珈琲評価システム</title>
-    </head>
-    <body>
-        <nav class='navbar navbar-expand-sm navbar-dark bg-dark fixed-top'>
-            <a class='navbar-brand' href='{% url "coffee_voting:index" %}'>珈琲評価システム</a>
-        </nav>
-        <div class='container'>
-            {% block content %}
-            {% endblock %}
+<html lang="ja">
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@700&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: rgb(207, 181, 135);
+        }
+        h1{
+            padding-top: 100px;
+            font-family: 'しっぽり明朝', serif;
+            border-bottom: 5px solid lightgray;
+        }
+        h2{
+            font-family: 'しっぽり明朝', serif;
+            font-size: 180%;
+            border-bottom: 5px solid lightgray;
+            padding-top: 30px;
+        }
+        table{
+            font-size: 120%;
+            background-color: rgb(193, 189, 184);
+        }
+        .navbar{
+            padding: 15px;
+            font-family: 'Kaisei Decol', serif;
+            background-color: rgb(182, 110, 9);
+        }
+        .navbar-brand{
+            font-size: 200%;
+            color: white;
+        }
+        .canvas-container{
+            width: 300px;
+            height: 300px;
+            margin-bottom: 100px;
+        }
+        button{
+            width: 15%;
+            height: 45px;
+        }
+        canvas{
+            background-color: white;
+        }
+        .foot-link{
+            font-size: 120%;
+            padding: 15px;
+        }
+        div{
+            font-size: 108%;
+        }
+        li{
+            font-size: 108%;
+        }
+    </style>
+    <title>珈琲評価システム</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class='navbar-brand' href='{% url "coffee_voting:index" %}'>珈琲評価システム</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href='{% url "coffee_voting:create" %}'>新規珈琲登録</a></li>
+                </ul>
+            </div>
         </div>
-    </body>
+    </nav>
+    <div class='container'>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
 </html>

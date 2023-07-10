@@ -1,19 +1,65 @@
 {% extends './base.html' %}
 {% block content %}
 
-<h1>{{ coffee.name }}</h1>
+<h1>詳細情報</h1>
 <div>
-    <p>豆の銘柄：{{ coffee.brand }}</p>
+    <h2>抽出条件</h2>
+    <p>豆の名前：{{ coffee.brand }}</p>
     <p>焙煎度：{{ coffee.roasting }}</p>
     <p>豆の重量：{{ coffee.beans_grams }} g</p>
     <p>抽出時間：{{ coffee.time }} s</p>
     <p>湯の温度：{{ coffee.temperature }} ℃</p>
     <p>最終的な量：{{ coffee.final_grams }} ml</p>
-    <p>{{ coffee.comment }}</p>
+    {% if coffee.comment %}
+        <p>抽出コメント：{{ coffee.comment }}</p>
+    {% endif %}
+</div>
+<div class="canvas-container">
+    <h2>レビューの平均値</h2>
+    <canvas id="radar-chart"></canvas>
+
+    <script type="text/javascript">
+    /* idが"radar-chart"の要素を取得 */
+    var ctx = document.getElementById("radar-chart");
+    
+    /* 上記要素にチャートを描画　*/
+    var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['苦味', '酸味', '甘み', 'コク', '香り'],
+            datasets: [{
+                label: "平均値",
+                data: [
+                '{{bitterness_avg}}','{{sourness_avg}}','{{sweetness_avg}}','{{richness_avg}}','{{flavor_avg}}'],
+            }]},
+        options: {
+            scale: {
+                r: {
+                    min: 0,
+                    max: 5,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+    </script>
 </div>
 <div>
+    {% if reviews %}
+        <h2>レビューコメント</h2>
+        {% for review in reviews %}
+            {% if review %}
+                <li>{{review}}</li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+<div class=foot-link>
     <a href='{% url "coffee_voting:index" %}'>一覧</a> |
     <a href='{% url "coffee_voting:update" coffee.pk %}'>編集</a> |
+    <a href='{% url "coffee_voting:voting" coffee.pk %}'>レビュー</a> |
 </div>
 
 {% endblock %}
