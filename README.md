@@ -10,34 +10,31 @@
 # DB構成概要
 
 ## Coffee(珈琲の情報を格納するテーブル)
-- カラム
-　- id
-　- roasting(焙煎度：Roastingテーブルと関連付ける外部キー)
-　- brand(豆の銘柄)
-　- beans_grams(豆の量)
-　- time(抽出時間)
-　- temperature(湯の温度)
-　- final_grams(最終的な量)
-　- コメント
-　- created_at(作成日)
-　- updated_at(更新日)
+- id
+- roasting(焙煎度：Roastingテーブルと関連付ける外部キー)
+- brand(豆の名前)
+- beans_grams(豆の量)
+- time(抽出時間)
+- temperature(湯の温度)
+- final_grams(最終的な量)
+- コメント
+- created_at(作成日)
+- updated_at(更新日)
 
 ## Voting(投票情報を格納するテーブル)
-- カラム
-　- id
-　- bitterness(苦味)
-　- sourness(酸味)
-　- sweetness(甘み)
-　- richness(コク)
-　- flavor(香り)
-　- review(レビュー)
-　- coffee_id(Coffeeテーブルと関連付ける外部キー)
-　- created_at(作成日)
-　- updated_at(更新日)
+- id
+- bitterness(苦味)
+- sourness(酸味)
+- sweetness(甘み)
+- richness(コク)
+- flavor(香り)
+- review(レビュー)
+- coffee_id(Coffeeテーブルと関連付ける外部キー)
+- created_at(作成日)
+- updated_at(更新日)
 
 ## Roasting(焙煎度を格納するテーブル)
-- カラム
-　- id
-　- name
+- id
+- name
 　-created_at(作成日)
 -pdated_at(更新日)
