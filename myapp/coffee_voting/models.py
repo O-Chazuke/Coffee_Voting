@@ -41,7 +41,7 @@ class Voting(models.Model):
     review=models.TextField(max_length=255,null=True,blank=True,verbose_name='レビュー')
     coffee_id=models.ForeignKey(
         Coffee,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
