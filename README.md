@@ -36,5 +36,5 @@
 ## Roasting(焙煎度を格納するテーブル)
 - id
 - name
-　-created_at(作成日)
--pdated_at(更新日)
+-created_at(作成日)
+-updated_at(更新日)
