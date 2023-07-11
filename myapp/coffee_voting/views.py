@@ -32,6 +32,10 @@ class UpdateView(generic.edit.UpdateView):
     model = Coffee
     fields = '__all__'
 
+class DeleteView(generic.edit.DeleteView):
+    model = Coffee
+    success_url = reverse_lazy('coffee_voting:index')
+
 class VotingView(generic.edit.CreateView):
     model = Voting
     fields = ['bitterness','sourness','sweetness','richness','flavor','review']
