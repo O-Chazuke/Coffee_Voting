@@ -11,7 +11,8 @@
     <p>湯の温度：{{ coffee.temperature }} ℃</p>
     <p>最終的な量：{{ coffee.final_grams }} ml</p>
     {% if coffee.comment %}
-        <p>抽出コメント：{{ coffee.comment }}</p>
+        <p>【抽出コメント】</p>
+        <p>{{ coffee.comment |linebreaksbr}}</p>
     {% endif %}
 </div>
 <div class="canvas-container">
