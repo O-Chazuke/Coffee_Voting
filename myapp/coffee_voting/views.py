@@ -11,17 +11,18 @@ class DetailView(generic.DetailView):
     model = Coffee
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        bitterness_result=Voting.objects.filter(coffee_id=self.kwargs['pk']).aggregate(Avg('bitterness'))
+        results=Voting.objects.filter(coffee_id=self.kwargs['pk'])
+        bitterness_result=results.aggregate(Avg('bitterness'))
         context['bitterness_avg']=bitterness_result['bitterness__avg']
-        sourness_result=Voting.objects.filter(coffee_id=self.kwargs['pk']).aggregate(Avg('sourness'))
+        sourness_result=results.aggregate(Avg('sourness'))
         context['sourness_avg'] =sourness_result['sourness__avg']
-        sweetness_result=Voting.objects.filter(coffee_id=self.kwargs['pk']).aggregate(Avg('sweetness'))
+        sweetness_result=results.aggregate(Avg('sweetness'))
         context['sweetness_avg'] =sweetness_result['sweetness__avg']
-        richness_result=Voting.objects.filter(coffee_id=self.kwargs['pk']).aggregate(Avg('richness'))
+        richness_result=results.aggregate(Avg('richness'))
         context['richness_avg'] =richness_result['richness__avg']
-        flavor_result=Voting.objects.filter(coffee_id=self.kwargs['pk']).aggregate(Avg('flavor'))
+        flavor_result=results.aggregate(Avg('flavor'))
         context['flavor_avg'] =flavor_result['flavor__avg']
-        context['reviews']=Voting.objects.filter(coffee_id=self.kwargs['pk']).values_list('review', flat=True)
+        context['reviews']=results.values_list('review', flat=True)
         return context
 
 class Coffee_CreateView(generic.edit.CreateView):
