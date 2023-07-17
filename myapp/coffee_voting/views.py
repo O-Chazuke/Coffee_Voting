@@ -1,14 +1,17 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,render
 from .models import Coffee,Voting
 from django.db.models import Avg
+from django.core.exceptions import ValidationError #追加
+
 
 class IndexView(generic.ListView):
     model = Coffee
 
 class DetailView(generic.DetailView):
     model = Coffee
+    #レーダーチャート用の平均値データ取り出し
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         results=Voting.objects.filter(coffee_id=self.kwargs['pk'])
@@ -36,6 +39,18 @@ class UpdateView(generic.edit.UpdateView):
 class DeleteView(generic.edit.DeleteView):
     model = Coffee
     success_url = reverse_lazy('coffee_voting:index')
+    
+    def dispatch(self, request, *args, **kwargs):
+        if request.POST:
+            obj = request.POST['delete_pass']
+            if obj!='goma': #入力された合言葉が正しいか判断(この場合の正解合言葉はgoma)
+                context={
+                    'coffee': get_object_or_404(Coffee, pk=self.kwargs.get('pk')),
+                    'error_message':'あいことばが違います'
+                }
+                return render(self.request,'coffee_voting/coffee_confirm_delete.html',context)
+            
+        return super(DeleteView, self).dispatch(request, *args, **kwargs)
 
 class VotingView(generic.edit.CreateView):
     model = Voting
@@ -48,6 +63,7 @@ class VotingView(generic.edit.CreateView):
         form.instance.coffee_id = table
         return super().form_valid(form)
     
+    #投票画面に豆の名前を表示するためのデータ取り出し
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['coffee_name']=Coffee.objects.filter(pk=self.kwargs['pk']).first()
