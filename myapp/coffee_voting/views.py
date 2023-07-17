@@ -3,7 +3,6 @@ from django.views import generic
 from django.shortcuts import get_object_or_404,render
 from .models import Coffee,Voting
 from django.db.models import Avg
-from django.core.exceptions import ValidationError #追加
 
 
 class IndexView(generic.ListView):
