@@ -5,7 +5,7 @@
 <p>'{{ coffee.brand }}'を削除しますか?</p>
 <form action='' method='post'>{% csrf_token %}
     あいことば：<input type='text' name='delete_pass'>
-    <button  type='submit'>削除する</button>
+    <button  type='submit' class='btn-delete'>削除する</button>
 </form>
 {% if error_message %}
     <p class=error-message>⚠エラー：{{error_message}}</p>
