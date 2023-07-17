@@ -2,7 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@700&family=Shippori+Mincho&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
         }
         .navbar{
             font-family: 'Kaisei Decol', serif;
-	    background-color: rgb(182, 110, 9);
+            background-color: rgb(182, 110, 9);
         }
         .canvas-container{
             width: 300px;
@@ -24,8 +25,8 @@
             background-color: white;
         }
         .btn{
-	    border: 2px solid lightgray;
-	    background-color: white;
+	        border: 2px solid lightgray;
+	        background-color: white;
             font-family: 'しっぽり明朝', serif;
             width: 50%;
             height: 60px;
@@ -38,6 +39,9 @@
             padding-top: 100px;
             font-family: 'しっぽり明朝', serif;
             border-bottom: 5px solid lightgray;
+        }
+        .review-title{
+            font-size: clamp(18px, calc(100vw / 15), 50px);
         }
         h2{
             font-family: 'しっぽり明朝', serif;
@@ -55,6 +59,14 @@
         li{
             font-size: 108%;
         }
+        .error_message{
+            color: red;
+            padding-top: 1%;
+            font-size: 110%;
+        }
+        .review_content{
+            font-size: 85%;
+        }
     </style>
     <title>珈琲評価システム</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
@@ -63,6 +75,12 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class='navbar-brand' href='{% url "coffee_voting:index" %}'>珈琲評価システム</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -77,5 +95,7 @@
         {% block content %}
         {% endblock %}
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
