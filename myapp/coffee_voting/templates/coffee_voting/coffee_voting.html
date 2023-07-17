@@ -1,14 +1,14 @@
 {% extends './base.html' %}
 {% block content %}
 
-<h1>{{coffee_name.brand}}へのレビュー</h1>
+<h1 class=review-title>レビュー[{{coffee_name.brand}}]</h1>
 <ul>
     <li>各項目を1~5の5段階で評価してください</li>
     <li>その他コメントがあれば「レビュー」欄に書いてくださいね(なくても全然OKです)</li>
 </ul>
 <form action='' method='post'>{% csrf_token %}
     {{ form.as_p }} <!--全ての項目を表示-->
-    <button type='submit' class='submit'>投稿</button>
+    <button  type='submit' class='btn btn-dark'>投稿</button>
 </form>
 <div class=foot-link>
     <!--JavaScriptの呼び出しで、前のページに戻る機能を実現-->
