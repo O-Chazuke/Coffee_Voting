@@ -4,11 +4,14 @@
 <h1>珈琲情報の削除</h1>
 <p>'{{ coffee.brand }}'を削除しますか?</p>
 <form action='' method='post'>{% csrf_token %}
-    <button type='submit' class='submit delete'>削除する</button>
+    あいことば：<input type='text' name='delete_pass'>
+    <button  type='submit'>削除する</button>
 </form>
-
-<div>
-    <p><a href='JavaScript:history.back()'>&lt; 戻る</a></p>
+{% if error_message %}
+    <p class=error_message>⚠エラー：{{error_message}}</p>
+{% endif %}
+<div class=foot-link>
+    <a href='JavaScript:history.back()'>&lt; 戻る</a>
 </div>
 
 {% endblock %}
