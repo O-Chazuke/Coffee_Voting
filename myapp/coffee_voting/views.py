@@ -13,6 +13,10 @@ class DetailView(generic.DetailView):
     #レーダーチャート用の平均値データ取り出し
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        results_time=get_object_or_404(Coffee, pk=self.kwargs.get('pk')).time
+        minutes=(results_time % 3600) // 60
+        seconds=results_time % 60
+        context["results_time"]="{}分{}秒".format(minutes, seconds)
         results=Voting.objects.filter(coffee_id=self.kwargs['pk'])
         bitterness_result=results.aggregate(Avg('bitterness'))
         context['bitterness_avg']=bitterness_result['bitterness__avg']
