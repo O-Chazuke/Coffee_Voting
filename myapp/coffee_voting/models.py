@@ -38,7 +38,7 @@ class Voting(models.Model):
     sweetness=models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)],verbose_name='甘味')
     richness=models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)],verbose_name='コク')
     flavor=models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)],verbose_name='香り')
-    review=models.TextField(max_length=255,null=True,blank=True,verbose_name='レビュー')
+    review=models.TextField(max_length=255,null=True,blank=True,verbose_name='レビューコメント')
     coffee_id=models.ForeignKey(
         Coffee,
         on_delete=models.CASCADE,
